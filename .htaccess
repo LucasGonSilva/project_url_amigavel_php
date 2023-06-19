@@ -1,0 +1,26 @@
+# Ativar o módulo RewriteEngine, que realiza a reescrita de URLs.
+
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteCond %{REQUEST_FILENAME} !-f
+
+RewriteCond %{REQUEST_FILENAME} !-l
+
+RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
+
+# Quando ocorrer o erro 403, redirecione o usuário.
+
+ErrorDocument 403 http://www.lsgontecnologia.com.br/
+
+# Bloquear a opção de listar os arquivos do diretorio
+
+Options -Indexes
+
+# Bloquear o acesso ao arquivo .env com o arquivo .htaccess
+
+<Files .env>
+    Order allow,deny
+    Deny from all
+</Files>
